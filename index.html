@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+<!-- Add your site or application content here -->
+<h1>timetable-to-gb</h1>
+<label for="table_import_paste_target">Paste (Ctrl + V) below an timetable copied (Ctrl + C) from your MIS timetable page. Please make sure you have copied the whole table (including the table head and the cells without course).</label>
+<div id="table_import_paste_target" contenteditable="true" autocomplete="off" spellcheck="false"></div>
+<!--<div id="table_import_paste_target" contenteditable="true" autocomplete="off" spellcheck="false"><meta charset="utf-8"><table cellspacing="0" id="mytimetable" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><tbody><tr><th class="socketfirst">Time</th><th class="sockettop">Mon</th><th class="sockettop">Tue</th><th class="sockettop">Wed</th><th class="sockettop">Thu</th><th class="sockettop">Fri</th><th class="sockettop">Sat</th></tr><tr><th class="socketleft">8:00 - 8:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">9:00 - 9:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">10:00 - 10:50</th><td class="socketspace">Computer Graphics (1001)<br>T7-203<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">11:00 - 11:50</th><td class="socketspace">Computer Graphics (1001)<br>T7-203<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">12:00 - 12:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">13:00 - 13:50</th><td class="socketspace">Digital Media (1001)<br>CC-414<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Computer Graphics (1001)<br>T29-505<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">14:00 - 14:50</th><td class="socketspace">Digital Media (1001)<br>CC-414<br>&nbsp;</td><td class="socketspace">Advertising and Society (1001)<br>T7-304<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Digital Media (1001)<br>T4-303<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">15:00 - 15:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Advertising and Society (1001)<br>T7-503<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">16:00 - 16:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Advertising and Society (1001)<br>T7-503<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">17:00 - 17:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">18:00 - 18:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">19:00 - 19:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">20:00 - 20:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">21:00 - 21:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr></tbody></table></div>-->
+<button onclick="check_table()">Parse</button>
+<p id="parse_result"></p>
+<label for="bg_url">Background Picture URL:</label>
+<input id="bg_url"><button onclick="drawCanvas()">Generate</button><br>
+<label for="bg-canvas">Output Canvas:</label><br>
+<canvas id="bg-canvas" width="1080" height="1920" style="border:1px solid #000000;"></canvas>
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('table_import_paste_target').addEventListener('paste', function (e) {
+    e.preventDefault();
+    var pastedText = ''
+    if (window.clipboardData && window.clipboardData.getData) { // IE
+      pastedText = window.clipboardData.getData('text/html');
+    } else if (e.clipboardData && e.clipboardData.getData) {
+      pastedText = e.clipboardData.getData('text/html');
+    }
+    document.getElementById('table_import_paste_target').innerHTML = pastedText
+  });
+</script>
+</body>
+
+</html>
