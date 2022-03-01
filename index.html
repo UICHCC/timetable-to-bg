@@ -15,23 +15,70 @@
   <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
 
-<!-- Add your site or application content here -->
-<h1>timetable-to-bg</h1>
-<label for="table_import_paste_target">Paste (Ctrl + V) below an timetable copied (Ctrl + C) from your MIS timetable page. Please make sure you have copied the whole table (including the table head and the cells without course).</label>
-<div id="table_import_paste_target" contenteditable="true" autocomplete="off" spellcheck="false"></div>
-<!--<div id="table_import_paste_target" contenteditable="true" autocomplete="off" spellcheck="false"><meta charset="utf-8"><table cellspacing="0" id="mytimetable" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><tbody><tr><th class="socketfirst">Time</th><th class="sockettop">Mon</th><th class="sockettop">Tue</th><th class="sockettop">Wed</th><th class="sockettop">Thu</th><th class="sockettop">Fri</th><th class="sockettop">Sat</th></tr><tr><th class="socketleft">8:00 - 8:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">9:00 - 9:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">10:00 - 10:50</th><td class="socketspace">Computer Graphics (1001)<br>T7-203<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">11:00 - 11:50</th><td class="socketspace">Computer Graphics (1001)<br>T7-203<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">12:00 - 12:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">13:00 - 13:50</th><td class="socketspace">Digital Media (1001)<br>CC-414<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Computer Graphics (1001)<br>T29-505<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">14:00 - 14:50</th><td class="socketspace">Digital Media (1001)<br>CC-414<br>&nbsp;</td><td class="socketspace">Advertising and Society (1001)<br>T7-304<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Digital Media (1001)<br>T4-303<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">15:00 - 15:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Advertising and Society (1001)<br>T7-503<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">16:00 - 16:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Advertising and Society (1001)<br>T7-503<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">17:00 - 17:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">18:00 - 18:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">19:00 - 19:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">20:00 - 20:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">21:00 - 21:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr></tbody></table></div>-->
-<button onclick="check_table()">Parse</button>
-<p id="parse_result"></p>
-<label for="bg_url">Background Picture URL:</label>
-<input id="bg_url"><button onclick="drawCanvas()">Generate</button><br>
-<label for="bg-canvas">Output Canvas:</label><br>
-<canvas id="bg-canvas" width="1080" height="1920" style="border:1px solid #000000;"></canvas>
+<div class="container my-3 mb-5">
+  <!-- Add your site or application content here -->
+  <h1 class="mb-5">Timetable-to-wallpaper</h1>
+  <div class="mb-3">
+    <label for="table_import_paste_target" class="form-label">Paste (Ctrl + V) below an timetable copied (Ctrl + C) from your MIS timetable page.</label>
+    <div id="table_import_paste_target" class="form-control" contenteditable="true" autocomplete="off" spellcheck="false"></div>
+    <div id="emailHelp" class="form-text">Please make sure you have copied the whole table (including the table head and the cells without course).</div>
+  </div>
+
+  <!--<div id="table_import_paste_target" contenteditable="true" autocomplete="off" spellcheck="false"><meta charset="utf-8"><table cellspacing="0" id="mytimetable" style="font-family: Times; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><tbody><tr><th class="socketfirst">Time</th><th class="sockettop">Mon</th><th class="sockettop">Tue</th><th class="sockettop">Wed</th><th class="sockettop">Thu</th><th class="sockettop">Fri</th><th class="sockettop">Sat</th></tr><tr><th class="socketleft">8:00 - 8:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">9:00 - 9:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">10:00 - 10:50</th><td class="socketspace">Computer Graphics (1001)<br>T7-203<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">11:00 - 11:50</th><td class="socketspace">Computer Graphics (1001)<br>T7-203<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">12:00 - 12:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">13:00 - 13:50</th><td class="socketspace">Digital Media (1001)<br>CC-414<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Computer Graphics (1001)<br>T29-505<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">14:00 - 14:50</th><td class="socketspace">Digital Media (1001)<br>CC-414<br>&nbsp;</td><td class="socketspace">Advertising and Society (1001)<br>T7-304<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Digital Media (1001)<br>T4-303<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">15:00 - 15:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Advertising and Society (1001)<br>T7-503<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">16:00 - 16:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">Advertising and Society (1001)<br>T7-503<br>&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">17:00 - 17:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">18:00 - 18:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">19:00 - 19:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">20:00 - 20:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr><tr><th class="socketleft">21:00 - 21:50</th><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td><td class="socketspace">&nbsp;</td></tr></tbody></table></div>-->
+  <button onclick="check_table()" type="button" class="btn btn-primary">Step 1: Parse</button>
+  <p id="parse_result" class="my-5"></p>
+  <hr>
+  <div class="mb-3">
+    <label for="bg_url" class="form-label">Background Picture URL:</label>
+    <input id="bg_url" class="form-control">
+    <div id="tableHelp" class="form-text">Default Photo by <a href="https://unsplash.com/@wildhoney?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">John Fowler</a> on <a href="https://unsplash.com/s/photos/wallpaper?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      will use as background if left blank</div>
+  </div>
+  <button onclick="drawCanvas()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#canvasModal">Step 2: Generate</button>
+  <div class="modal fade" id="canvasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="canvasModalLabel">Your Wallpaper: Long press the image to save</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <canvas id="bg-canvas" width="1080" height="1920"></canvas>
+        </div>
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--          <button type="button" class="btn btn-primary" onclick="saveImage()">Download Image</button>-->
+<!--        </div>-->
+      </div>
+    </div>
+  </div>
+  <hr>
+  <h2>Extra Tool: .ics Generator</h2>
+  <div class="mb-3">
+    <label for="dateField" class="form-label">Start and End Date</label>
+    <div class="row" id="dateField">
+      <div class="col">
+        <input id="startDate" type="text" class="form-control" placeholder="Format: 2022-02-02" aria-label="Start Date">
+      </div>
+      <div class="col">
+        <input id="endDate" type="text" class="form-control" placeholder="Format: 2022-06-02" aria-label="End Date">
+      </div>
+    </div>
+    <div id="dateHelp" class="form-text">Input the start and ending date for the repeating course. Date checking has not been implemented; the wrong date will lead to the wrong file.</div>
+  </div>
+  <button onclick="get_ics_material()" type="button" class="btn btn-warning">Get .ics</button>
+  <p class="my-5">Project by UICHCC, <a href="https://github.com/UICHCC/timetable-to-bg">GitHub Repository</a>; v1.0</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="js/ics.deps.min.js"></script>
+<script src="js/ics.min.js"></script>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
@@ -46,6 +93,74 @@
     }
     document.getElementById('table_import_paste_target').innerHTML = pastedText
   });
+
+  var myModal = new bootstrap.Modal(document.getElementById('canvasModal'))
+</script>
+
+<script>
+
+  // get start and end date
+  function get_ics_material(){
+    var startDate = document.getElementById('startDate').value;
+    var endDate = document.getElementById('endDate').value;
+
+    if (course_ds.length == 0){
+      alert('No course data found. Please parse the table first.');
+      return;
+    }
+
+    if (startDate == '' || endDate == ''){
+      alert('Please input the start and end date.');
+      return;
+    }
+
+
+    function getAllDate(weekday, startD, endD){
+      var start = new Date(startD);
+      var end = new Date(endD);
+      var dates = [];
+      while (start <= end) {
+        if (start.getDay() == (weekday + 1) % 6) {
+          dates.push(start.toISOString().slice(0,10));
+        }
+        start.setDate(start.getDate() + 1);
+      }
+      return dates;
+    }
+
+    function toStartEndTime(time){
+      if (typeof time === 'number'){
+        let range = timeRange[time].split('-');
+        return [range[0].substring(0,2) + ':' + range[0].substring(2,4), range[1].substring(0,2) + ':' + range[1].substring(2,4) + ':00'];
+      }else{
+        let start = timeRange[time[0]].split('-')[0];
+        let end = timeRange[time[time.length - 1]].split('-')[1];
+        return [start.substring(0,2) + ':' + start.substring(2,4), end.substring(0,2) + ':' + end.substring(2,4) + ':00'];
+      }
+    }
+
+
+    var course_ds_date = []
+    for (var i = 0; i < course_ds.length; i++) {
+      course_ds_date.push([course_ds[i][0], getAllDate(course_ds[i][1], startDate, endDate), toStartEndTime(course_ds[i][2])])
+    }
+
+    // adding time to date
+    function mergeDateTime(date, time){
+      var date_time = new Date(date + 'T' + time);
+      return date_time;
+    }
+
+    var cal = ics();
+    for (var i = 0; i < course_ds_date.length; i++){
+      for (var j = 0; j < course_ds_date[i][1].length; j++) {
+        cal.addEvent(course_ds_date[i][0][0], '', course_ds_date[i][0][1], mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][0]), mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][1]));
+      }
+    }
+    // cal.addEvent(subject, description, location, begin, end);
+    // cal.addEvent(subject, description, location, begin, end); // yes, you can have multiple events :-)
+    cal.download(startDate + '_' + endDate + '_' + course_ds_date.length + '-courses');
+  }
 </script>
 </body>
 
