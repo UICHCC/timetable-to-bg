@@ -34,14 +34,14 @@ const xy_pad = 40
 const h_pad = 8
 const v_pad = 6
 let b_width = 160
-let b_height = ((cheight / 3 * 2) - (v_pad * timeRange.length - 1)) / timeRange.length
+let b_height = (((cheight / 3 * 2) - xy_pad * 2 + v_pad) / timeRange.length) - v_pad
 
 let course_plain = []
 let course_ds = []
 
 function update_dimension(){
-  b_width = (cwidth - xy_pad * 2) / weekday.length
-  b_height = ((cheight / 3 * 2) - xy_pad * 2 - (v_pad * timeRange.length - 1)) / timeRange.length
+  b_width = (cwidth - xy_pad * 2) / weekday.length - h_pad + v_pad/timeRange.length
+  b_height = (((cheight / 3 * 2) - xy_pad * 2 + v_pad) / timeRange.length) - v_pad
 }
 
 function mergeCourse(course_array){
