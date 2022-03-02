@@ -92,7 +92,7 @@ function check_table(){
     for (var j = 1, col; col = row.cells[j]; j++) {  // ignore the first col
       //iterate through columns
       //columns would be accessed using the "col" variable assigned in the for loop
-      if (col.innerHTML !== '&nbsp;') {
+      if (col.innerHTML.trim().length !== 6 && col.innerHTML.trim().length !== 0) {
         class_info.push([extract_cname_location(col.innerHTML), j - 1, i - 1])
       }
     }
