@@ -92,8 +92,8 @@ function check_table(){
     for (var j = 1, col; col = row.cells[j]; j++) {  // ignore the first col
       //iterate through columns
       //columns would be accessed using the "col" variable assigned in the for loop
-      if (col.innerHTML.trim().length !== 6 && col.innerHTML.trim().length !== 0) {
-        class_info.push([extract_cname_location(col.innerHTML), j - 1, i - 1])
+      if (col.innerHTML.replace('&nbsp;', ' ').trim().length !== 0) {  // check if the cell is empty
+        class_info.push([extract_cname_location(col.innerHTML.replace('&nbsp;', ' ').trim()), j - 1, i - 1])
       }
     }
     all_courses = all_courses.concat(class_info)
@@ -104,9 +104,9 @@ function check_table(){
 }
 
 function extract_cname_location(content){
-  const re_matches = new RegExp("(.+[^\\)]\\))<br>(.+[^<])<br>","g")
+  const re_matches = new RegExp("(.+[^\\)]\\))<br>([^<]+)<br>","g")
   let arr = re_matches.exec(content);
-  return [arr[1], arr[2]];
+  return [arr[1], arr[2].trim()];
 }
 
 function wdSortFunction(a, b){
