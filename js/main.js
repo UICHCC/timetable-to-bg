@@ -174,11 +174,16 @@ function drawBackground(){
   return new Promise(resolve => {
     img.onload = function () {
       if (img.width < img.height) {
-        var ratio = img.width / c_width;
-        img.width = c_width;
-        img.height = img.height / ratio;
+        let ratio = img.width / c_width;
+        if (img.height / ratio > c_height) {
+          img.width = c_width;
+          img.height = img.height / ratio;
+        } else {
+          img.height = c_height;
+          img.width = img.width / ratio;
+        }
       } else {
-        var ratio = img.height / c_height;
+        let ratio = img.height / c_height;
         img.height = c_height;
         img.width = img.width / ratio;
       }
