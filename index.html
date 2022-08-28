@@ -233,7 +233,11 @@
         let range = timeRange[time].split('-');
         return [range[0].substring(0,2) + ':' + range[0].substring(2,4), range[1].substring(0,2) + ':' + range[1].substring(2,4) + ':00'];
       }else{
-        let start = timeRange[time[0]].split('-')[0];
+        let start_index = time[0];
+        if (typeof start_index === 'object') {
+          start_index = time[0][0];
+        }
+        let start = timeRange[start_index].split('-')[0];
         let end = timeRange[time[time.length - 1]].split('-')[1];
         return [start.substring(0,2) + ':' + start.substring(2,4), end.substring(0,2) + ':' + end.substring(2,4) + ':00'];
       }

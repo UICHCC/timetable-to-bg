@@ -82,7 +82,13 @@ function mergeCourse(course_array){
 
 function mergeTime(time){
   if (typeof time === 'object'){
-    let start_time = timeRange[time[0]].split('-')[0]
+    let start_time_index = time[0]
+    // if a course cross 3 time ranges then 'time' will like:
+    // time === [[6, 7], 8]
+    if (typeof time[0] === 'object') {
+      start_time_index = time[0][0]
+    }
+    let start_time = timeRange[start_time_index].split('-')[0]
     let end_time = timeRange[time[time.length-1]].split('-')[1]
     return `${start_time}-${end_time}`
   }else if (typeof time === 'number'){
