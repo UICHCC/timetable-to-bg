@@ -219,7 +219,7 @@
       var start = new Date(startD);
       var end = new Date(endD);
       var dates = [];
-      while (start <= end) {
+      for (var day = 0; day < 7; day++) {
         if (start.getDay() == (weekday + 1) % 6) {
           dates.push(start.toISOString().slice(0,10));
         }
@@ -258,7 +258,11 @@
     var cal = ics();
     for (var i = 0; i < course_ds_date.length; i++){
       for (var j = 0; j < course_ds_date[i][1].length; j++) {
-        cal.addEvent(course_ds_date[i][0][0], '', course_ds_date[i][0][1], mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][0]), mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][1]));
+        cal.addEvent(course_ds_date[i][0][0], '', course_ds_date[i][0][1], mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][0]), mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][1]), {
+          freq: 'WEEKLY',
+          until: endDate,
+          interval: 1,
+        });
       }
     }
     // cal.addEvent(subject, description, location, begin, end);
