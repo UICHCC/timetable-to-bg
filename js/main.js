@@ -72,7 +72,13 @@ function mergeCourse(course_array){
       continue;
     }
     if (new_array[new_array.length-1][0][0] === course_array[i][0][0] && new_array[new_array.length-1][0][1] === course_array[i][0][1]){
-      new_array[new_array.length-1][2] = [new_array[new_array.length-1][2], course_array[i][2]]
+      if (new_array[new_array.length-1][2].length >= 2) {
+        temp = new_array[new_array.length-1][2];  // handling the case when the course session is more than 2 hours
+        temp[temp.length] = course_array[i][2];
+        new_array[new_array.length-1][2] = temp;
+      } else {
+        new_array[new_array.length-1][2] = [new_array[new_array.length-1][2], course_array[i][2]];
+      }
     }else{
       new_array.push(course_array[i])
     }
