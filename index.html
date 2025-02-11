@@ -307,8 +307,26 @@
       var date_time = new Date(date + 'T' + time);
       return date_time;
     }
+    
+    // Add semester determination logic
+    function determineSemester(dateStr) {
+      const date = new Date(dateStr);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1; // JavaScript months are 0-based
 
-    var cal = ics();
+      // First semester: July to December
+      // Second semester: January to June
+      if (month >= 7) {
+        return `${year}S1`;
+      } else {
+        return `${year-1}S2`; // Use previous year for Spring semester
+      }
+    }
+
+    // Get semester identifier based on start date
+    const semesterId = determineSemester(startDate);
+    var cal = ics(`${semesterId}.uic`)
+
     for (var i = 0; i < course_ds_date.length; i++){
       for (var j = 0; j < course_ds_date[i][1].length; j++) {
 
