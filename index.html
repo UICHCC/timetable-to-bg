@@ -179,6 +179,13 @@
     <input id="alarms" type="text" class="form-control" placeholder="10" aria-label="Alarm before class">
     </div>
   </div>
+  <div class="form-check mt-2">
+    <input class="form-check-input" type="checkbox" id="smartAlarmCheck">
+    <label class="form-check-label" for="smartAlarmCheck">
+      Use smart notifications (9 min for adjacent classes)
+    </label>
+    <div class="form-text">When enabled, notifications for back-to-back classes will be set to 9 minutes before class.</div>
+  </div>
   <button onclick="get_ics_material()" type="button" class="btn btn-warning">Get .ics</button>
   <hr class="mt-4 mb-4">
   <span>Hosting on <a href="https://pages.github.com/">GitHub Pages</a> , content delivered by <a href="https://www.cloudflare.com/">Cloudflare</a> and <a href="https://www.jsdelivr.com/">jsDelivr</a>.</span>
@@ -205,12 +212,43 @@
 </script>
 
 <script>
+  // Add this function before get_ics_material()
+  function isAdjacentClass(currentClass, allClasses) {
+    const [currentDay, currentTime] = [currentClass[1], currentClass[2]];
+    
+    for (const otherClass of allClasses) {
+      if (currentClass === otherClass) continue;
+      
+      const [otherDay, otherTime] = [otherClass[1], otherClass[2]];
+      
+      // Check if same day
+      if (currentDay === otherDay) {
+        if (typeof currentTime === 'number' && typeof otherTime === 'number') {
+          // For single timeslot classes
+          if (currentTime === otherTime + 1) {
+            return true;
+          }
+        } else {
+          // For continuous timeslot classes
+          const currentStart = Array.isArray(currentTime) ? currentTime[0] : currentTime;
+          const otherEnd = Array.isArray(otherTime) ? 
+            otherTime[otherTime.length - 1] : otherTime;
+          
+          if (currentStart === otherEnd + 1) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
 
   // get start and end date
   function get_ics_material(){
     var startDate = document.getElementById('startDate').value;
     var endDate = document.getElementById('endDate').value;
     var alarms = document.getElementById('alarms').value;
+    var useSmartAlarms = document.getElementById('smartAlarmCheck').checked;
 
     if (course_ds.length == 0){
       alert('No course data found. Please parse the table first.');
@@ -269,11 +307,19 @@
     var cal = ics();
     for (var i = 0; i < course_ds_date.length; i++){
       for (var j = 0; j < course_ds_date[i][1].length; j++) {
+        
+        let eventAlarm = alarms;
+      
+        // Only modify alarm time if alarms is not blank and smart alarms are enabled
+        if (useSmartAlarms && alarms !== '' && isAdjacentClass(course_ds[i], course_ds)) {
+          eventAlarm = "9";
+        }
+
         cal.addEvent(course_ds_date[i][0][0], '', course_ds_date[i][0][1], mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][0]), mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][1]), {
           freq: 'WEEKLY',
           until: endDate,
           interval: 1,
-        },alarms);
+        },eventAlarm);
       }
     }
     // cal.addEvent(subject, description, location, begin, end);
