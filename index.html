@@ -172,10 +172,10 @@
     </div>
     <div id="dateHelp" class="form-text">Input the start and ending date for the repeating course. <span class="fw-bold">Date checking has not been implemented, and a wrong input will lead to a corrupted file.</span></div>
   </div>
-  <!-- 预留课程闹钟提醒 -->
+  <!-- add alarm -->
   <div class="mb-3">
     <div class="col">
-    <label for="alarms" class="form-label">Alarm before class (Unit: minutes)</label>
+    <label for="alarms" class="form-label">Notification before class (Unit: minutes)</label>
     <input id="alarms" type="text" class="form-control" placeholder="10" aria-label="Alarm before class">
     </div>
   </div>
@@ -187,7 +187,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="js/ics.deps.min.js"></script>
-<script src="js/ics.js"></script>
+<script src="js/ics-modified.min.js"></script>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
@@ -269,11 +269,11 @@
     var cal = ics();
     for (var i = 0; i < course_ds_date.length; i++){
       for (var j = 0; j < course_ds_date[i][1].length; j++) {
-        cal.addEvent(course_ds_date[i][0][0], '', course_ds_date[i][0][1], mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][0]), mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][1]),alarms, {
+        cal.addEvent(course_ds_date[i][0][0], '', course_ds_date[i][0][1], mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][0]), mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][1]), {
           freq: 'WEEKLY',
           until: endDate,
           interval: 1,
-        });
+        },alarms);
       }
     }
     // cal.addEvent(subject, description, location, begin, end);
