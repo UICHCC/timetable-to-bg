@@ -174,17 +174,21 @@
   </div>
   <!-- add alarm -->
   <div class="mb-3">
-    <div class="col">
     <label for="alarms" class="form-label">Notification before class (Unit: minutes)</label>
-    <input id="alarms" type="text" class="form-control" placeholder="10" aria-label="Alarm before class">
+    <div class="row align-items-center">
+      <div class="col-md-4">
+        <input id="alarms" type="text" class="form-control" placeholder="10" aria-label="Alarm before class">
+      </div>
+      <div class="col">
+        <div class="form-check mb-0">
+          <input class="form-check-input" type="checkbox" id="smartAlarmCheck">
+          <label class="form-check-label" for="smartAlarmCheck">
+            Use smart notifications (9 min for adjacent classes)
+          </label>
+          <div class="form-text">When enabled, notifications for back-to-back classes will be set to 9 minutes before class.</div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="form-check mt-2">
-    <input class="form-check-input" type="checkbox" id="smartAlarmCheck">
-    <label class="form-check-label" for="smartAlarmCheck">
-      Use smart notifications (9 min for adjacent classes)
-    </label>
-    <div class="form-text">When enabled, notifications for back-to-back classes will be set to 9 minutes before class.</div>
   </div>
   <button onclick="get_ics_material()" type="button" class="btn btn-warning">Get .ics</button>
   <hr class="mt-4 mb-4">
@@ -307,7 +311,7 @@
     var cal = ics();
     for (var i = 0; i < course_ds_date.length; i++){
       for (var j = 0; j < course_ds_date[i][1].length; j++) {
-        
+
         let eventAlarm = alarms;
       
         // Only modify alarm time if alarms is not blank and smart alarms are enabled
