@@ -198,7 +198,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="js/ics.deps.min.js"></script>
-<script src="js/ics-modified.min.js"></script>
+<script src="js/ics.js"></script>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
@@ -216,6 +216,40 @@
 </script>
 
 <script>
+  // Geo-coordinates for each location
+  // lat/lon: WGS-84 (used for standard GEO: property)
+  // gcj02:   GCJ-02 / Mars Coordinates (used for X-APPLE-STRUCTURED-LOCATION on Apple devices)
+  //          Fill in gcj02 values after conversion — leave null to fall back to WGS-84
+  const locationCoordinates = {
+    'CC':  { lat: 22.351745, lon: 113.517378, gcj02: { lat: 22.348834, lon: 113.522574 } },
+    'T1':  { lat: 22.351909, lon: 113.515211, gcj02: { lat: 22.349004, lon: 113.520414 } },
+    'T2':  { lat: 22.352343, lon: 113.514784, gcj02: { lat: 22.349439, lon: 113.519989 } },
+    'T3':  { lat: 22.352718, lon: 113.514462, gcj02: { lat: 22.349815, lon: 113.519668 } },
+    'T4':  { lat: 22.353013, lon: 113.516823, gcj02: { lat: 22.350103, lon: 113.522021 } },
+    'T5':  { lat: 22.353145, lon: 113.516369, gcj02: { lat: 22.350236, lon: 113.521568 } },
+    'T6':  { lat: 22.353276, lon: 113.515884, gcj02: { lat: 22.350369, lon: 113.521085 } },
+    'T7':  { lat: 22.353547, lon: 113.515374, gcj02: { lat: 22.350641, lon: 113.520577 } },
+    'T8':  { lat: 22.353800, lon: 113.514822, gcj02: { lat: 22.350896, lon: 113.520027 } },
+    'T29': { lat: 22.354105, lon: 113.513923, gcj02: { lat: 22.351203, lon: 113.519131 } },
+    'SP':  { lat: 22.351357, lon: 113.514985, gcj02: { lat: 22.348453, lon: 113.520189 } }
+  };
+
+  // Add this helper function to extract building code from location string
+  // Sort entries by key length descending so longer codes (e.g. "T29") are
+  // matched before shorter prefixes (e.g. "T2") that would otherwise shadow them.
+  function getLocationCoordinates(locationString) {
+    if (!locationString) {
+      return null;
+    }
+    const sortedEntries = Object.entries(locationCoordinates).sort((a, b) => b[0].length - a[0].length);
+    for (const [code, coords] of sortedEntries) {
+      if (locationString.includes(code)) {
+        return coords;
+      }
+    }
+    return null;
+  }
+
   // Add this function before get_ics_material()
   function isAdjacentClass(currentClass, allClasses) {
     const [currentDay, currentTime] = [currentClass[1], currentClass[2]];
@@ -336,12 +370,20 @@
         if (useSmartAlarms && alarms !== '' && isAdjacentClass(course_ds[i], course_ds)) {
           eventAlarm = "9";
         }
+        
+        // Get coordinates for the location
+        const locationString = course_ds_date[i][0][1];
+        const coordinates = getLocationCoordinates(locationString);
 
         cal.addEvent(course_ds_date[i][0][0], '', course_ds_date[i][0][1], mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][0]), mergeDateTime(course_ds_date[i][1][j], course_ds_date[i][2][1]), {
           freq: 'WEEKLY',
           until: endDate,
           interval: 1,
-        },eventAlarm);
+        },
+        eventAlarm, 
+        coordinates, // Use WGS-84 coordinates for general compatibility
+        coordinates ? coordinates.gcj02 : null //For Apple devices, use GCJ-02 coordinates if available
+      );
       }
     }
     // cal.addEvent(subject, description, location, begin, end);
