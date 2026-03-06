@@ -161,13 +161,15 @@
   <hr>
   <h2>Bonus Tool: <code>.ics</code> file Generator</h2>
   <div class="mb-3">
-    <label for="dateField" class="form-label">Start and End Date (Format: 2022-02-02)</label>
+    <label for="dateField" class="form-label">Start and End Date</label>
     <div class="row" id="dateField">
       <div class="col">
-        <input id="startDate" type="text" class="form-control" placeholder="Start Date" aria-label="Start Date">
+        <label for="startDate" class="form-label text-muted small">Start Date</label>
+        <input id="startDate" type="date" class="form-control" aria-label="Start Date">
       </div>
       <div class="col">
-        <input id="endDate" type="text" class="form-control" placeholder="End Date" aria-label="End Date">
+        <label for="endDate" class="form-label text-muted small">End Date</label>
+        <input id="endDate" type="date" class="form-control" aria-label="End Date">
       </div>
     </div>
     <div id="dateHelp" class="form-text">Input the start and ending date for the repeating course. <span class="fw-bold">Date checking has not been implemented, and a wrong input will lead to a corrupted file.</span></div>
@@ -203,6 +205,13 @@
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
 <script>
+  ['startDate', 'endDate'].forEach(function(id) {
+    var el = document.getElementById(id);
+    el.addEventListener('click', function() {
+      try { el.showPicker(); } catch(e) {}
+    });
+  });
+
   document.getElementById('table_import_paste_target').addEventListener('paste', function (e) {
     e.preventDefault();
     var pastedText = ''
@@ -264,6 +273,7 @@
       return;
     }
 
+    // Convert date picker value (YYYY-MM-DD) to expected format
     startDate = startDate + " 08:00:00 CST"
     endDate = endDate + " 23:00:00 CST"
     // enforce timezone
